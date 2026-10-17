@@ -157,8 +157,10 @@ if (tg?.initDataUnsafe?.user) {
 
 // Background Debounced Remote Persistence (Optimistic Instant UI)
 let persistDebounceTimer = null;
-// Guard: prevents syncRealDatabaseData from overwriting last_collected for 5 seconds after a mine collect
-let lastCollectSyncGuard = 0;
+// Session flag: set to true once user collects from mine in this session.
+// After collecting, we never let syncRealDatabaseData replace last_collected
+// with an OLDER DB timestamp (which would reset the mine counter).
+let hasCollectedInSession = false;
 function debouncePersist() {
   clearTimeout(persistDebounceTimer);
   persistDebounceTimer = setTimeout(persistStateToSupabase, 800);
@@ -1416,7 +1418,7 @@ function setupBaseActions() {
     const ratePerSec = (state.base.collector_level * 5) / 60;
     let accumulated = Math.floor(diffSec * ratePerSec);
     if (state.user.is_vip) accumulated = Math.floor(accumulated * 1.5);
-    // Cap: 8 hours * rate (480 mins * level * 5 gold/min)
+    // Cap: 8 hours (480 mins) of production — matches backend base_crud.py
     const maxCap = state.base.collector_level * 5 * 480;
     accumulated = Math.min(accumulated, maxCap);
 
@@ -1425,15 +1427,15 @@ function setupBaseActions() {
       return;
     }
 
-    // Set guard BEFORE any async work to prevent sync race
-    lastCollectSyncGuard = Date.now() + 5000; // block sync overwrite for 5 seconds
+    // Mark session as collected — sync will never revert last_collected after this
+    hasCollectedInSession = true;
 
     state.user.gold += accumulated;
     state.base.last_collected = nowMs;
     fireRoyalConfetti();
     showToast(`💰 Collected +${accumulated.toLocaleString()} Piko Gold!`);
 
-    // Persist to Supabase immediately (before saveState triggers debounce)
+    // Write to Supabase atomically BEFORE saveState's debounce triggers
     if (supabaseClient && state.user.id) {
       try {
         await Promise.all([
@@ -2460,9 +2462,17 @@ async function syncRealDatabaseData() {
         state.base.turret_level = baseData.defense_turret_level ?? state.base.turret_level;
         state.base.defense_power = baseData.defense_power ?? state.base.defense_power;
         state.base.collector_level = baseData.collector_level ?? state.base.collector_level;
-        // Only sync last_collected from DB if the guard is not active (prevents resetting after a collect)
-        if (baseData.last_collected_at && Date.now() > lastCollectSyncGuard) {
-          state.base.last_collected = new Date(baseData.last_collected_at).getTime();
+        if (baseData.last_collected_at) {
+          const dbLastCollected = new Date(baseData.last_collected_at).getTime();
+          if (!hasCollectedInSession) {
+            // Haven't collected yet this session — trust DB fully (correct accumulated on fresh load)
+            state.base.last_collected = dbLastCollected;
+          } else if (dbLastCollected > (state.base.last_collected || 0)) {
+            // Already collected this session — only advance last_collected if DB is NEWER
+            // (e.g. user collected via bot after collecting in mini app). Never go backwards.
+            state.base.last_collected = dbLastCollected;
+          }
+          // If DB timestamp is OLDER than local (stale read race), we keep local — no reset!
         }
         if (baseData.shield_until) {
           const shieldTime = new Date(baseData.shield_until).getTime();
