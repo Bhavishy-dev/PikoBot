@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Piko Kingdom - Golden Empire</title>
+  <!-- Telegram WebApp SDK -->
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <!-- Google Fonts: Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <!-- Supabase JS Client -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- Canvas Confetti for Celebration FX -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- Ambient Gold Glow Backdrop -->
+  <div class="ambient-glow glow-top"></div>
+  <div class="ambient-glow glow-bottom"></div>
+
+  <div id="app-container">
+    <!-- Top Royal Header -->
+    <header class="top-header">
+      <div class="user-pill">
+        <div class="avatar-ring">
+          <img id="user-avatar-img" class="avatar-img" style="display:none;" alt="Profile Picture" />
+          <div class="avatar-initial" id="user-avatar">👑</div>
+          <div class="online-indicator"></div>
+        </div>
+        <div class="user-meta">
+          <div class="user-name-row">
+            <span class="user-name" id="user-name">Lord Emperor</span>
+            <span class="badge vip-badge" id="vip-badge" style="display: none;">👑 VIP</span>
+            <span class="badge free-badge" id="free-badge">FREE</span>
+          </div>
+          <span class="empire-rank" id="empire-rank">Level 1 Citadel</span>
+        </div>
+      </div>
+
+      <!-- Live Currency Group -->
+      <div class="currency-group">
+        <div class="currency-chip gold-chip" id="gold-chip" title="Piko Gold Coins">
+          <img src="assets/coin.png" class="clay-currency-icon" alt="Gold" />
+          <span class="chip-val" id="gold-val">1,000</span>
+        </div>
+        <div class="currency-chip diamond-chip" id="diamond-chip" title="Piko Diamonds">
+          <img src="assets/diamond.png" class="clay-currency-icon" alt="Diamonds" />
+          <span class="chip-val" id="diamond-val">25</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Daily Activities Quick Bar (Streak, Lucky Wheel & Handbook Guide) -->
+    <div class="quick-activity-bar">
+      <button class="activity-pill streak-pill" id="btn-open-streak">
+        <span class="pill-icon"><img src="assets/streak.png" class="clay-pill-img" alt="Streak" /></span>
+        <div class="pill-text">
+          <span class="pill-label">Daily Streak</span>
+          <span class="pill-status" id="streak-indicator">Claim Day 1</span>
+        </div>
+      </button>
+
+      <button class="activity-pill wheel-pill" id="btn-open-wheel">
+        <span class="pill-icon"><img src="assets/wheel.png" class="clay-pill-img" alt="Wheel" /></span>
+        <div class="pill-text">
+          <span class="pill-label">Lucky Wheel</span>
+          <span class="pill-status" id="wheel-status-text">Free Spin!</span>
+        </div>
+      </button>
+
+      <button class="activity-pill guide-pill" id="btn-open-guide">
+        <span class="pill-icon"><img src="assets/scroll.png" class="clay-pill-img" alt="Guide" /></span>
+        <div class="pill-text">
+          <span class="pill-label">How to Play</span>
+          <span class="pill-status">Kingdom Guide</span>
+        </div>
+      </button>
+    </div>
+
+    <!-- Main Content Tabs Container (Loaded dynamically from modular components) -->
+    <main class="main-content" id="main-content">
+      <div class="component-loading-spinner" id="components-loader" style="text-align:center; padding: 50px 16px;">
+        <div style="font-size: 32px; animation: pulseRadar 1.5s infinite ease-in-out;">👑</div>
+        <p style="margin-top: 10px; font-weight: 700; font-size: 13.5px; color: #b45309;">Summoning Kingdom...</p>
+      </div>
+    </main>
+
+    <!-- Bottom Royal Navigation Bar -->
+    <nav class="bottom-nav">
+      <button class="nav-btn active" data-tab="tab-base">
+        <span class="nav-icon"><img src="assets/castle.png" class="clay-nav-icon" alt="Citadel" /></span>
+        <span class="nav-label">Citadel</span>
+      </button>
+      <button class="nav-btn" data-tab="tab-army">
+        <span class="nav-icon"><img src="assets/turret.png" class="clay-nav-icon" alt="Barracks" /></span>
+        <span class="nav-label">Barracks</span>
+      </button>
+      <button class="nav-btn war-nav-btn" data-tab="tab-war">
+        <span class="nav-icon"><img src="assets/swords.png" class="clay-nav-icon" alt="War" /></span>
+        <span class="nav-label">War</span>
+      </button>
+      <button class="nav-btn" data-tab="tab-market">
+        <span class="nav-icon"><img src="assets/coin.png" class="clay-nav-icon" alt="Market" /></span>
+        <span class="nav-label">Market</span>
+      </button>
+      <button class="nav-btn" data-tab="tab-leaderboard">
+        <span class="nav-icon"><img src="assets/hq_palace.png" class="clay-nav-icon" alt="Empire" /></span>
+        <span class="nav-label">Empire</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- Dynamic Modals Container (Loaded from components/modals.html) -->
+  <div id="modals-root"></div>
+
+  <!-- Royal Toast Notification -->
+  <div id="toast" class="royal-toast"></div>
+
+  <script src="app.js"></script>
+</body>
+
+</html>

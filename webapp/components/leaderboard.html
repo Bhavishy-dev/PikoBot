@@ -1,0 +1,90 @@
+<!-- 5. LEADERBOARD TAB COMPONENT (EMPIRE HALL OF FAME) -->
+<section id="tab-leaderboard" class="tab-pane">
+  <!-- Purpose Guide Banner -->
+  <div class="tab-guide-banner empire-guide">
+    <div class="guide-icon"><img src="assets/hq_palace.png" class="clay-asset-mini" alt="Empire" /></div>
+    <div class="guide-text">
+      <h4>Imperial Hall of Fame</h4>
+      <p>Live rankings of the richest empires, supreme citadels, and mightiest warlords across the realm.</p>
+    </div>
+  </div>
+
+  <!-- Leaderboard Navigation Sub-Tabs -->
+  <div class="lb-nav-tabs">
+    <button class="lb-tab active" data-type="rich">
+      <img src="assets/coin.png" class="lb-tab-micro-img" alt="Wealth" />
+      <span>Wealthiest</span>
+    </button>
+    <button class="lb-tab" data-type="citadel">
+      <img src="assets/castle.png" class="lb-tab-micro-img" alt="Citadel" />
+      <span>Citadel Rank</span>
+    </button>
+    <button class="lb-tab" data-type="army">
+      <img src="assets/swords.png" class="lb-tab-micro-img" alt="Army" />
+      <span>Army Strike</span>
+    </button>
+  </div>
+
+  <!-- Royal Podium for Top 3 (3D Pedestal Architecture) -->
+  <div class="podium-container" id="podium-container">
+    <!-- Rank 2: Silver Pedestal (Left) -->
+    <div class="podium-pedestal step-silver" id="podium-step-silver">
+      <div class="podium-medal-badge medal-silver">🥈 2nd</div>
+      <div class="podium-avatar-frame silver-ring">
+        <img id="podium-silver-avatar-img" class="podium-avatar-img" src="" alt="Silver" onerror="this.src='https://ui-avatars.com/api/?name=2&background=e2e8f0&color=475569';" />
+      </div>
+      <div class="podium-info">
+        <span class="podium-player-name" id="podium-silver-name">Scanning...</span>
+        <span class="podium-score-pill" id="podium-silver-score">-</span>
+        <span class="podium-sub-caption" id="podium-silver-sub">-</span>
+      </div>
+      <div class="pedestal-block block-silver">
+        <span class="pedestal-rank-num">2</span>
+      </div>
+    </div>
+
+    <!-- Rank 1: Grand Gold Pedestal (Center, Elevated) -->
+    <div class="podium-pedestal step-gold" id="podium-step-gold">
+      <div class="podium-crown-badge">👑 1st</div>
+      <div class="podium-avatar-frame gold-ring">
+        <img id="podium-gold-avatar-img" class="podium-avatar-img" src="" alt="Gold" onerror="this.src='https://ui-avatars.com/api/?name=1&background=fef3c7&color=b45309';" />
+        <span class="gold-laurel-wreath">✦</span>
+      </div>
+      <div class="podium-info">
+        <span class="podium-player-name" id="podium-gold-name">Scanning...</span>
+        <span class="podium-score-pill gold-score" id="podium-gold-score">-</span>
+        <span class="podium-sub-caption" id="podium-gold-sub">-</span>
+      </div>
+      <div class="pedestal-block block-gold">
+        <span class="pedestal-rank-num">1</span>
+      </div>
+    </div>
+
+    <!-- Rank 3: Bronze Pedestal (Right) -->
+    <div class="podium-pedestal step-bronze" id="podium-step-bronze">
+      <div class="podium-medal-badge medal-bronze">🥉 3rd</div>
+      <div class="podium-avatar-frame bronze-ring">
+        <img id="podium-bronze-avatar-img" class="podium-avatar-img" src="" alt="Bronze" onerror="this.src='https://ui-avatars.com/api/?name=3&background=fed7aa&color=c2410c';" />
+      </div>
+      <div class="podium-info">
+        <span class="podium-player-name" id="podium-bronze-name">Scanning...</span>
+        <span class="podium-score-pill" id="podium-bronze-score">-</span>
+        <span class="podium-sub-caption" id="podium-bronze-sub">-</span>
+      </div>
+      <div class="pedestal-block block-bronze">
+        <span class="pedestal-rank-num">3</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rankings List Header -->
+  <div class="lb-list-header">
+    <span>Empire Sovereign</span>
+    <span>Score</span>
+  </div>
+
+  <!-- Rankings List Ranks 4+ -->
+  <div class="lb-full-list" id="lb-full-list">
+    <!-- Populated by JS -->
+  </div>
+</section>

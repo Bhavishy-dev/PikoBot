@@ -1,0 +1,194 @@
+<!-- 1. BASE / CITADEL TAB COMPONENT -->
+<section id="tab-base" class="tab-pane active">
+  <!-- Purpose Guide Banner -->
+  <div class="tab-guide-banner">
+    <div class="guide-icon"><img src="assets/castle.png" class="clay-asset-mini" alt="Castle" /></div>
+    <div class="guide-text">
+      <h4>Citadel & Base Command</h4>
+      <p>Upgrade your headquarters, harvest mined gold, and fortify walls to defend against enemy raids.</p>
+    </div>
+  </div>
+
+  <!-- Hero Citadel Card -->
+  <div class="citadel-hero-card">
+    <div class="citadel-badge-row">
+      <span class="pill-tag" id="hq-level-pill"><img src="assets/hq_palace.png" class="clay-badge-mini"
+          alt="HQ" /> HQ LEVEL 1</span>
+      <span class="shield-status-pill exposed" id="shield-status-pill"><span class="exposed-beacon"></span>
+        EXPOSED</span>
+    </div>
+
+    <div class="citadel-visual-container">
+      <div class="citadel-emblem" id="citadel-emblem">
+        <img src="assets/castle.png" class="clay-asset-img" alt="Citadel" />
+      </div>
+      <div class="citadel-aura" id="citadel-aura"></div>
+    </div>
+
+    <div class="citadel-info-block">
+      <h2 id="citadel-name">Royal Citadel Stronghold</h2>
+      <p class="subtitle" id="citadel-desc">The beating heart of your kingdom and resource vault.</p>
+
+      <!-- Wall Integrity Gauge -->
+      <div class="hp-gauge-box">
+        <div class="hp-header-flex">
+          <span class="gauge-title"><img src="assets/shield.png" class="clay-inline-icon" alt="Shield" /> Fortress
+            Wall</span>
+          <span class="gauge-stats" id="wall-hp-stats">500 / 500 HP (100%)</span>
+        </div>
+        <div class="gauge-track">
+          <div class="gauge-thumb" id="wall-hp-thumb" style="width: 100%;"></div>
+        </div>
+      </div>
+
+      <!-- Citadel Vulnerability & Threat Radar Alert -->
+      <div class="citadel-threat-alert" id="citadel-threat-box">
+        <div class="threat-icon-pulse" id="threat-icon">⚠️</div>
+        <div class="threat-meta">
+          <div class="threat-title-row">
+            <span class="threat-label" id="threat-label">THREAT STATUS: EXPOSED (HIGH RISK)</span>
+          </div>
+          <p class="threat-desc" id="threat-desc">
+            Rivals can raid up to <strong id="threat-at-risk">700 🪙</strong> right now! Activate Divine Shield or
+            reinforce Wall!
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Passive Gold Generator -->
+  <div class="gold-mine-card">
+    <div class="mine-header-row">
+      <div class="mine-icon-box">
+        <img src="assets/gold_mine.png" class="clay-asset-img" alt="Gold Mine" />
+      </div>
+      <div class="mine-content-meta">
+        <div class="mine-title-row">
+          <h4>Royal Gold Mine</h4>
+          <span class="mine-badge">Lv.<span id="mine-level-num">1</span></span>
+        </div>
+        <p class="caption">Producing ~<span id="mine-speed-num">5</span> Gold / min</p>
+      </div>
+    </div>
+
+    <div class="infra-action-bar dual-action">
+      <button class="btn btn-gold" id="btn-collect-mine">
+        <img src="assets/coin.png" class="clay-coin-micro" alt="Gold" />
+        <span id="mine-btn-text">Collect (<span id="mine-accumulated-num">0</span>)</span>
+      </button>
+      <button class="btn btn-secondary" id="btn-upgrade-mine">
+        <span>Upgrade</span>
+        <span class="cost-tag"><span id="cost-mine-up">1,000</span> <img src="assets/coin.png"
+            class="clay-coin-micro" alt="Gold" /></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Fortress Infrastructure -->
+  <div class="section-heading">
+    <h3>Fortress Infrastructure</h3>
+    <span class="heading-sub">Strengthen defenses against raids</span>
+  </div>
+
+  <div class="infra-stack">
+    <!-- Headquarters Card -->
+    <div class="infra-row-card">
+      <div class="infra-card-body">
+        <div class="infra-icon-frame">
+          <img src="assets/hq_palace.png" class="clay-asset-img" alt="Headquarters" />
+        </div>
+        <div class="infra-content-block">
+          <div class="infra-title-line">
+            <h4>Headquarters (HQ)</h4>
+            <span class="lvl-badge">Lv.<span id="card-hq-lvl">1</span></span>
+          </div>
+          <p class="caption">Core Citadel Power • +250 Max Wall HP, +50 DEF</p>
+        </div>
+      </div>
+
+      <div class="infra-action-bar">
+        <button class="btn btn-gold btn-block" id="btn-upgrade-hq">
+          <span>Upgrade HQ</span>
+          <span class="cost-tag"><span id="cost-hq-up">1,500</span> <img src="assets/coin.png"
+              class="clay-coin-micro" alt="Gold" /></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Wall Card -->
+    <div class="infra-row-card">
+      <div class="infra-card-body">
+        <div class="infra-icon-frame">
+          <img src="assets/wall.png" class="clay-asset-img" alt="Fortress Wall" />
+        </div>
+        <div class="infra-content-block">
+          <div class="infra-title-line">
+            <h4>Fortress Wall</h4>
+            <span class="lvl-badge">Lv.<span id="card-wall-lvl">1</span></span>
+          </div>
+          <p class="caption">Absorbs raid assault damage (+300 HP / lvl)</p>
+        </div>
+      </div>
+
+      <div class="infra-action-bar dual-action">
+        <button class="btn btn-gold" id="btn-upgrade-wall">
+          <span>Upgrade</span>
+          <span class="cost-tag"><span id="cost-wall-up">1,000</span> <img src="assets/coin.png"
+              class="clay-coin-micro" alt="Gold" /></span>
+        </button>
+        <button class="btn btn-secondary" id="btn-repair-wall">
+          <span id="repair-btn-label">Repair</span>
+          <span class="cost-tag" id="repair-cost-tag"><span id="cost-wall-repair">0</span> <img
+              src="assets/coin.png" class="clay-coin-micro" alt="Gold" /></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Turret Card -->
+    <div class="infra-row-card">
+      <div class="infra-card-body">
+        <div class="infra-icon-frame">
+          <img src="assets/turret.png" class="clay-asset-img" alt="Defense Turret" />
+        </div>
+        <div class="infra-content-block">
+          <div class="infra-title-line">
+            <h4>Defense Turret</h4>
+            <span class="lvl-badge">Lv.<span id="card-turret-lvl">1</span></span>
+          </div>
+          <p class="caption">Fires on raiders • <span id="stat-turret-pwr">100</span> ATK Defense</p>
+        </div>
+      </div>
+
+      <div class="infra-action-bar">
+        <button class="btn btn-gold btn-block" id="btn-upgrade-turret">
+          <span>Upgrade Turret</span>
+          <span class="cost-tag"><span id="cost-turret-up">1,200</span> <img src="assets/coin.png"
+              class="clay-coin-micro" alt="Gold" /></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Divine Peace Treaty Card -->
+    <div class="infra-row-card shield-treaty-card">
+      <div class="infra-card-body">
+        <div class="infra-icon-frame shield-frame">
+          <img src="assets/shield.png" class="clay-asset-img" alt="Peace Shield" />
+        </div>
+        <div class="infra-content-block">
+          <div class="infra-title-line">
+            <h4>12-Hour Divine Peace Treaty</h4>
+          </div>
+          <p class="caption">Completely shields your citadel against all incoming raids.</p>
+        </div>
+      </div>
+
+      <div class="infra-action-bar">
+        <button class="btn btn-diamond btn-block" id="btn-activate-shield">
+          <span>10 <img src="assets/diamond.png" class="clay-diamond-micro" alt="Diamond" /> Activate Peace
+            Shield</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

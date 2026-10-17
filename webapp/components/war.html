@@ -1,0 +1,111 @@
+<!-- 3. WAR ROOM & RAIDS TAB COMPONENT -->
+<section id="tab-war" class="tab-pane">
+  <!-- Purpose Guide Banner -->
+  <div class="tab-guide-banner war-guide">
+    <div class="guide-icon"><img src="assets/swords.png" class="clay-asset-mini" alt="War" /></div>
+    <div class="guide-text">
+      <h4>PvP War Arena & Raids</h4>
+      <p>Raid rivals to plunder up to 70% of their gold vault! Direct P2P coin exchange — defenders always keep 30% safe.</p>
+    </div>
+  </div>
+
+  <!-- Tactical Radar Command Hero Card -->
+  <div class="war-hero-card">
+    <div class="war-hero-top">
+      <div class="tactical-badge">
+        <div class="radar-scope-circle">
+          <img src="assets/radar.png" class="tactical-radar-img" alt="Radar" />
+        </div>
+        <div class="tactical-titles-col">
+          <span class="tactical-title">TACTICAL RADAR</span>
+          <span class="tactical-sub">PvP Empire Recon</span>
+        </div>
+      </div>
+      <div class="strike-power-badge">
+        <span class="strike-label">STRIKE POWER</span>
+        <span class="strike-val" id="war-user-power">110 ATK</span>
+      </div>
+    </div>
+
+    <!-- Raid Horns / Energy Counter -->
+    <div class="raid-energy-card">
+      <div class="energy-left-cluster">
+        <div class="horn-icon-frame">
+          <img src="assets/horn.png" class="clay-horn-img" alt="Horn" />
+        </div>
+        <div class="energy-info">
+          <div class="energy-title-row">
+            <span class="energy-name">War Horns</span>
+            <span class="energy-count" id="raid-horns-count">3 / 3</span>
+          </div>
+          <!-- Visual Glowing Horn Energy Pips -->
+          <div class="horn-pips-row" id="horn-pips-row">
+            <span class="horn-pip active"></span>
+            <span class="horn-pip active"></span>
+            <span class="horn-pip active"></span>
+          </div>
+          <span class="energy-status-text" id="raid-horns-timer">Full Strength (Ready to Raid)</span>
+        </div>
+      </div>
+      <button class="btn btn-gold-outline btn-xs recharge-btn" id="btn-recharge-horns">
+        <span>+1 Horn</span>
+        <span class="recharge-cost">• 3 <img src="assets/diamond.png" class="clay-diamond-micro" alt="Diamond" /></span>
+      </button>
+    </div>
+
+    <!-- Tactical Operations Flow (Clean, connected, never overflows) -->
+    <div class="tactical-flow-ribbon">
+      <div class="flow-step">
+        <span class="flow-num">1</span>
+        <div class="flow-text-wrap">
+          <strong>Scout Base</strong>
+          <span>Pick rival</span>
+        </div>
+      </div>
+      <span class="flow-sep">➔</span>
+      <div class="flow-step">
+        <span class="flow-num">2</span>
+        <div class="flow-text-wrap">
+          <strong>Combat Check</strong>
+          <span>ATK vs DEF</span>
+        </div>
+      </div>
+      <span class="flow-sep">➔</span>
+      <div class="flow-step">
+        <span class="flow-num">3</span>
+        <div class="flow-text-wrap">
+          <strong>Plunder</strong>
+          <span>Up to 70%</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Match Raid CTA Button -->
+    <button class="btn btn-crimson btn-md btn-block quick-raid-btn" id="btn-quick-raid">
+      <img src="assets/swords.png" class="btn-swords-icon" alt="Swords" />
+      <span>Quick Match Raid (Auto-Target)</span>
+    </button>
+  </div>
+
+  <!-- War Sub-tabs (Radar Targets vs Inbound Threat Log) -->
+  <div class="war-nav-tabs">
+    <button class="war-tab active" id="war-tab-radar" data-view="radar">
+      <img src="assets/radar.png" class="subtab-clay-icon" alt="Radar" />
+      <span>Enemy Radar (<span id="radar-count">0</span>)</span>
+    </button>
+    <button class="war-tab" id="war-tab-logs" data-view="logs">
+      <img src="assets/shield.png" class="subtab-clay-icon" alt="Logs" />
+      <span>Inbound Threat Log</span>
+    </button>
+  </div>
+
+  <!-- Target Cards Container -->
+  <div class="targets-stack" id="targets-stack">
+    <!-- Populated by JS -->
+  </div>
+
+  <!-- Threat Logs Container (Hidden by default until toggled) -->
+  <div class="targets-stack" id="threat-logs-stack" style="display: none;">
+    <!-- Populated by JS -->
+  </div>
+</section>

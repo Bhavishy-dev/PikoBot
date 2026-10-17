@@ -1,0 +1,341 @@
+<!-- MODALS COMPONENT CONTAINER -->
+
+<!-- 1. MODAL: 7-DAY PROGRESSIVE STREAK -->
+<div class="modal-backdrop" id="streak-modal">
+  <div class="modal-card streak-modal-card">
+    <div class="modal-card-header">
+      <div class="modal-header-brand">
+        <img src="assets/streak.png" class="modal-header-icon" alt="Daily Streak" />
+        <div>
+          <h3>7-Day Royal Streak</h3>
+          <p class="caption">Login daily to unlock increasing empire treasures!</p>
+        </div>
+      </div>
+      <button class="modal-close-btn" id="btn-close-streak">&times;</button>
+    </div>
+
+    <div class="modal-card-body">
+      <!-- Streak Status Ribbon -->
+      <div class="streak-tracker-ribbon">
+        <div class="tracker-info-row">
+          <span class="tracker-label">Progress: <strong id="streak-counter-badge">1 of 7 Days</strong></span>
+          <span class="vip-streak-badge">👑 VIP: 2x Rewards</span>
+        </div>
+        <div class="streak-progress-bar-bg">
+          <div class="streak-progress-bar-fill" id="streak-progress-fill" style="width: 14%;"></div>
+        </div>
+      </div>
+
+      <div class="streak-grid" id="streak-grid">
+        <!-- Rendered dynamically by JS into Days 1-6 grid + Day 7 Grand card -->
+      </div>
+    </div>
+
+    <div class="modal-card-footer">
+      <button class="btn btn-gold btn-block" id="btn-claim-streak">Claim Today's Bounty</button>
+    </div>
+  </div>
+</div>
+
+<!-- 2. MODAL: LUCKY SPIN WHEEL -->
+<div class="modal-backdrop" id="wheel-modal">
+  <div class="modal-card">
+    <div class="modal-card-header">
+      <div class="modal-header-brand">
+        <img src="assets/wheel.png" class="modal-header-icon" alt="Fortune Wheel" />
+        <div>
+          <h3>Royal Fortune Wheel</h3>
+          <p class="caption">Spin once every day for massive rewards!</p>
+        </div>
+      </div>
+      <button class="modal-close-btn" id="btn-close-wheel">&times;</button>
+    </div>
+
+    <div class="modal-card-body wheel-body">
+      <div class="wheel-outer-wrapper">
+        <div class="wheel-pointer">▼</div>
+        <canvas id="wheel-canvas" width="280" height="280" class="wheel-canvas"></canvas>
+        <div class="wheel-center-badge">👑</div>
+      </div>
+      <p class="wheel-hint" id="wheel-timer-hint">1 Free Spin Available</p>
+    </div>
+
+    <div class="modal-card-footer">
+      <button class="btn btn-gold btn-block" id="btn-spin-wheel">SPIN THE WHEEL!</button>
+    </div>
+  </div>
+</div>
+
+<!-- 3. MODAL: GAMEPLAY MOTIVE & LORE HANDBOOK -->
+<div class="modal-backdrop" id="guide-modal">
+  <div class="modal-card guide-modal-card">
+    <div class="modal-card-header">
+      <div class="modal-header-brand">
+        <img src="assets/scroll.png" class="modal-header-icon" alt="Handbook" />
+        <div>
+          <h3>Piko Kingdom Handbook</h3>
+          <p class="caption">Tactical manual, lore & empire strategies</p>
+        </div>
+      </div>
+      <button class="modal-close-btn" id="btn-close-guide">&times;</button>
+    </div>
+
+    <div class="modal-card-body guide-scroll-body">
+      <!-- Story Motive Hero Banner -->
+      <div class="guide-story-intro">
+        <div class="guide-story-crown">👑</div>
+        <div class="guide-story-text">
+          <h4>Emperor's Decree: Conquer & Rule!</h4>
+          <p>Amass vast fortunes in <strong>Piko Gold 🪙</strong> & <strong>Diamonds 💎</strong>, command an unbeatable army, plunder rival vaults, and conquer the global Imperial Leaderboard!</p>
+        </div>
+      </div>
+
+      <!-- 5 Tactical Pillars -->
+      <div class="guide-steps-list">
+        <!-- Step 1 -->
+        <div class="guide-step-card">
+          <div class="step-icon-frame">
+            <img src="assets/castle.png" class="step-asset-icon" alt="Citadel" />
+            <span class="step-num-badge">1</span>
+          </div>
+          <div class="step-card-info">
+            <div class="step-header-row">
+              <h5>Fortress Citadel</h5>
+              <span class="step-tag-pill tag-wealth">Passive Income</span>
+            </div>
+            <p>Your <strong>Royal Gold Mine</strong> generates gold automatically around the clock. Upgrade your <strong>Wall HP</strong> and <strong>Defense Turrets</strong> to protect your treasury from enemy raiders.</p>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="guide-step-card">
+          <div class="step-icon-frame">
+            <img src="assets/turret.png" class="step-asset-icon" alt="Barracks" />
+            <span class="step-num-badge">2</span>
+          </div>
+          <div class="step-card-info">
+            <div class="step-header-row">
+              <h5>Military Barracks</h5>
+              <span class="step-tag-pill tag-army">Army Strength</span>
+            </div>
+            <p>Train <strong>Footmen (⚔️)</strong> for frontal assaults, <strong>Archers (🏹)</strong> to pierce turrets, and heavy <strong>Siege Rams (🛡️)</strong> to demolish high-HP enemy stone walls.</p>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="guide-step-card">
+          <div class="step-icon-frame">
+            <img src="assets/horn.png" class="step-asset-icon" alt="War Raids" />
+            <span class="step-num-badge">3</span>
+          </div>
+          <div class="step-card-info">
+            <div class="step-header-row">
+              <h5>War Arena & Raids</h5>
+              <span class="step-tag-pill tag-war">PvP Plunder</span>
+            </div>
+            <p>Scout active player bases on the Tactical Radar. If your Strike Power defeats their defense, breach their wall to plunder up to <strong>70% of their Vault Gold</strong>! Defenders retain 30% safe + a 2-Hour Truce.</p>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="guide-step-card">
+          <div class="step-icon-frame">
+            <img src="assets/market_stall.png" class="step-asset-icon" alt="Marketplace" />
+            <span class="step-num-badge">4</span>
+          </div>
+          <div class="step-card-info">
+            <div class="step-header-row">
+              <h5>P2P Marketplace</h5>
+              <span class="step-tag-pill tag-trade">Trading & VIP</span>
+            </div>
+            <p>Trade 12-Hour Divine Peace Shields, troop crates, and wall reinforcements with other emperors for Gold or raw <strong>Diamonds 💎</strong> in the Imperial VIP Chamber.</p>
+          </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="guide-step-card">
+          <div class="step-icon-frame">
+            <img src="assets/victory_cup.png" class="step-asset-icon" alt="Leaderboard" />
+            <span class="step-num-badge">5</span>
+          </div>
+          <div class="step-card-info">
+            <div class="step-header-row">
+              <h5>Empire Hall of Fame</h5>
+              <span class="step-tag-pill tag-glory">Imperial Crown</span>
+            </div>
+            <p>Compete for the #1 spot in Wealthiest, Citadel Level, and Army Power to earn exclusive prestige and reign as the Grand Sovereign of the realm!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-card-footer">
+      <button class="btn btn-gold btn-block" id="btn-confirm-guide">⚔️ Enter the Battlefield!</button>
+    </div>
+  </div>
+</div>
+
+<!-- 4. MODAL: BATTLE COMBAT REPORT -->
+<div class="modal-backdrop" id="battle-modal">
+  <div class="modal-card battle-modal-card">
+    <div class="modal-card-header">
+      <h3 id="battle-result-title">⚔️ Combat Report</h3>
+      <button class="modal-close-btn" id="btn-close-battle">&times;</button>
+    </div>
+
+    <div class="modal-card-body" id="battle-result-body">
+      <!-- Filled dynamically with victory / defeat clay cards -->
+    </div>
+
+    <div class="modal-card-footer">
+      <button class="btn btn-gold btn-block" id="btn-confirm-battle">Claim Glory & Return</button>
+    </div>
+  </div>
+</div>
+
+<!-- 5. MODAL: LIST ITEM FOR SALE -->
+<div class="modal-backdrop" id="sell-modal">
+  <div class="modal-card sell-modal-card">
+    <div class="modal-card-header">
+      <div class="modal-header-brand">
+        <img src="assets/market_stall.png" class="modal-header-icon" alt="Merchant" />
+        <div>
+          <h3>List Item on Marketplace</h3>
+          <p class="caption">Offer items to players for Gold or Diamonds</p>
+        </div>
+      </div>
+      <button class="modal-close-btn" id="btn-close-sell">&times;</button>
+    </div>
+
+    <div class="modal-card-body">
+      <!-- Item preview card -->
+      <div class="sell-preview-card" id="sell-preview-card">
+        <div class="sell-preview-icon-box">
+          <img src="assets/shield.png" id="sell-preview-img" class="sell-preview-img" alt="Item Preview" />
+        </div>
+        <div class="sell-preview-meta">
+          <h4 id="sell-preview-title">12-Hour Divine Peace Shield</h4>
+          <span class="caption" id="sell-preview-desc">Protects fortress citadel from all PvP raids while offline.</span>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <label>Select Item to List</label>
+        <select id="sell-select-type" class="royal-input">
+          <option value="SHIELD">🛡️ 12-Hour Divine Peace Shield</option>
+          <option value="TROOP_CRATE">⚔️ Mystery Troop Crate (150 Soldiers)</option>
+          <option value="WALL_REPAIR">🧱 Wall Reinforcement (+500 HP)</option>
+          <option value="RESOURCE_PACK">💰 Royal Gold Vault (+25,000 Coins)</option>
+        </select>
+      </div>
+
+      <div class="form-row">
+        <label>Requested Currency</label>
+        <select id="sell-select-currency" class="royal-input">
+          <option value="GOLD">🪙 Piko Gold Coins (Public Trading)</option>
+          <option value="DIAMOND">💎 Piko Diamonds (👑 VIP Only)</option>
+        </select>
+      </div>
+
+      <div class="form-row">
+        <label>Your Asking Price</label>
+        <div class="price-input-wrapper">
+          <input type="number" id="sell-input-price" class="royal-input" placeholder="e.g. 500" min="1" value="500">
+          <span class="currency-tag-indicator" id="sell-currency-indicator">🪙 Coins</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-card-footer">
+      <button class="btn btn-gold btn-block" id="btn-submit-listing">🚀 Publish Listing</button>
+    </div>
+  </div>
+</div>
+
+<!-- 6. MODAL: ROYAL VIP MEMBERSHIP CHAMBER -->
+<div class="modal-backdrop" id="vip-modal">
+  <div class="modal-card vip-modal-card">
+    <div class="modal-card-header">
+      <div class="vip-modal-title-row">
+        <span class="crown-sparkle">👑</span>
+        <h3 style="margin: 0; color: #fbbf24;">Imperial VIP Chamber</h3>
+      </div>
+      <button class="modal-close-btn" id="btn-close-vip">&times;</button>
+    </div>
+
+    <div class="modal-card-body">
+      <div class="vip-status-banner" id="vip-status-banner">
+        <!-- Filled dynamically: active countdown or free tier status -->
+      </div>
+
+      <div class="vip-perks-container">
+        <div class="vip-perk-item">
+          <span class="perk-icon">✨</span>
+          <div class="perk-info">
+            <strong>Chamchamata Glowing Golden Name</strong>
+            <span>Prestige gold luster and top priority display in leaderboards & group chats.</span>
+          </div>
+        </div>
+        <div class="perk-item-divider"></div>
+        <div class="vip-perk-item">
+          <span class="perk-icon">💎</span>
+          <div class="perk-info">
+            <strong>Diamond Marketplace</strong>
+            <span>List and trade valuable assets for raw Piko Diamonds.</span>
+          </div>
+        </div>
+        <div class="perk-item-divider"></div>
+        <div class="vip-perk-item">
+          <span class="perk-icon">🎁</span>
+          <div class="perk-info">
+            <strong>2x Daily Rewards</strong>
+            <span>Double Gold & double Diamonds on every single daily streak claim.</span>
+          </div>
+        </div>
+        <div class="perk-item-divider"></div>
+        <div class="vip-perk-item">
+          <span class="perk-icon">⛏️</span>
+          <div class="perk-info">
+            <strong>+50% Mine Output Boost</strong>
+            <span>Turbocharges Gold Mine production to 1.5x speed permanently while VIP.</span>
+          </div>
+        </div>
+        <div class="perk-item-divider"></div>
+        <div class="vip-perk-item future-perk">
+          <span class="perk-icon">🔮</span>
+          <div class="perk-info">
+            <strong>Upcoming Privileges</strong>
+            <span>Exclusive Royal Siege units, tax exemptions, and custom citadel crests!</span>
+          </div>
+        </div>
+      </div>
+
+      <h4 class="tier-select-title">Choose Membership Duration</h4>
+      <div class="vip-tiers-grid">
+        <!-- Tier 1: 2 Days -->
+        <div class="vip-tier-card" data-plan="2d">
+          <div class="tier-badge">Trial Pass</div>
+          <div class="tier-duration">2 Days</div>
+          <div class="tier-cost">100 <img src="assets/diamond.png" class="clay-diamond-micro" alt="Diamonds" /></div>
+          <button class="btn btn-gold btn-sm btn-block btn-buy-tier" data-plan="2d">Get 2 Days</button>
+        </div>
+
+        <!-- Tier 2: 7 Days (Popular) -->
+        <div class="vip-tier-card popular-tier" data-plan="7d">
+          <div class="tier-badge popular-badge">⭐ Popular</div>
+          <div class="tier-duration">7 Days</div>
+          <div class="tier-cost">300 <img src="assets/diamond.png" class="clay-diamond-micro" alt="Diamonds" /></div>
+          <button class="btn btn-gold btn-sm btn-block btn-buy-tier" data-plan="7d">Get 7 Days</button>
+        </div>
+
+        <!-- Tier 3: 28 Days (Best Value) -->
+        <div class="vip-tier-card best-tier" data-plan="28d">
+          <div class="tier-badge best-badge">👑 Royal Month</div>
+          <div class="tier-duration">28 Days</div>
+          <div class="tier-cost">1,000 <img src="assets/diamond.png" class="clay-diamond-micro" alt="Diamonds" /></div>
+          <button class="btn btn-gold btn-sm btn-block btn-buy-tier" data-plan="28d">Get 28 Days</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,65 @@
+<!-- 4. MARKETPLACE TAB COMPONENT -->
+<section id="tab-market" class="tab-pane">
+  <!-- Purpose Guide Banner -->
+  <div class="tab-guide-banner">
+    <div class="guide-icon"><img src="assets/market_stall.png" class="clay-asset-mini" alt="Market" /></div>
+    <div class="guide-text">
+      <h4>Decentralized P2P Marketplace</h4>
+      <p>Trade tactical assets (Shields, Troops, Wall Kits) with other players using Gold or Diamonds.</p>
+    </div>
+  </div>
+
+  <!-- VIP Membership Promotion Banner (Gleaming Imperial Chamber) -->
+  <div class="royal-vip-card" id="royal-vip-card">
+    <div class="vip-crown-icon-frame">
+      <span class="vip-crown-emblem">👑</span>
+      <span class="vip-sparkle-dot dot-1">✦</span>
+      <span class="vip-sparkle-dot dot-2">✦</span>
+    </div>
+    <div class="vip-meta">
+      <div class="vip-title-line">
+        <h4>Imperial VIP Chamber</h4>
+        <span class="vip-shimmer-tag">👑 2x Perks</span>
+      </div>
+      <p>Golden Name • Diamond Trading • +50% Mine Output • 2x Streak</p>
+    </div>
+    <button class="btn btn-gold btn-sm vip-enter-btn" id="btn-open-vip-modal">
+      <span>VIP Chamber</span>
+    </button>
+  </div>
+
+  <!-- Market Hero Action Bar (Quick List Item) -->
+  <div class="market-hero-bar">
+    <div class="market-hero-left">
+      <div class="market-hero-icon-box">
+        <img src="assets/market_stall.png" class="market-stall-hero-img" alt="Merchant" />
+      </div>
+      <div class="market-hero-meta">
+        <h4>Merchant Exchange</h4>
+        <p>List your resources for Gold or Diamonds</p>
+      </div>
+    </div>
+    <button class="btn btn-gold btn-sm" id="btn-open-sell">
+      <span>➕ List Item</span>
+    </button>
+  </div>
+
+  <!-- Category Filters with 3D Clay Icons -->
+  <div class="market-categories">
+    <button class="category-chip active" data-filter="all">🏪 All Items</button>
+    <button class="category-chip" data-filter="SHIELD"><img src="assets/shield.png" class="chip-clay-micro" alt="Shield" /> Shields</button>
+    <button class="category-chip" data-filter="TROOP_CRATE"><img src="assets/swords.png" class="chip-clay-micro" alt="Troops" /> Crates</button>
+    <button class="category-chip" data-filter="WALL_REPAIR"><img src="assets/wall.png" class="chip-clay-micro" alt="Wall" /> Wall Kits</button>
+    <button class="category-chip" data-filter="RESOURCE_PACK"><img src="assets/coin.png" class="chip-clay-micro" alt="Gold" /> Vaults</button>
+  </div>
+
+  <div class="market-items-grid" id="market-items-grid">
+    <!-- Dynamically filled with server-driven listings -->
+  </div>
+
+  <div class="sell-action-footer">
+    <button class="btn btn-gold-outline btn-block" id="btn-open-sell-modal">
+      ➕ List My Item on Market
+    </button>
+  </div>
+</section>

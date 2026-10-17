@@ -1,0 +1,171 @@
+<!-- 2. MILITARY BARRACKS TAB COMPONENT -->
+<section id="tab-army" class="tab-pane">
+  <!-- Purpose Guide Banner -->
+  <div class="tab-guide-banner">
+    <div class="guide-icon"><img src="assets/turret.png" class="clay-asset-mini" alt="Barracks" /></div>
+    <div class="guide-text">
+      <h4>Military Barracks & High Command</h4>
+      <p>Train Footmen, Archers & Siege Catapults to attack enemy kingdoms and defend your gold.</p>
+    </div>
+  </div>
+
+  <!-- Army High Command Overview Hero Card -->
+  <div class="army-hero-card">
+    <div class="army-stats-banner">
+      <div class="army-stat-box">
+        <span class="stat-big-num" id="total-troops-num">15</span>
+        <span class="stat-sub-label">Total Units</span>
+      </div>
+      <div class="stat-vert-divider"></div>
+      <div class="army-stat-box highlight-box">
+        <span class="stat-big-num gold-text" id="total-power-num">110</span>
+        <span class="stat-sub-label">Strike Power 💥</span>
+      </div>
+      <div class="stat-vert-divider"></div>
+      <div class="army-stat-box">
+        <span class="stat-big-num" id="barracks-lvl-num">Lv.1</span>
+        <span class="stat-sub-label">Barracks</span>
+      </div>
+    </div>
+
+    <!-- Housing Capacity Gauge -->
+    <div class="hp-gauge-box army-gauge-box">
+      <div class="hp-header-flex">
+        <span class="gauge-title">⛺ Garrison Housing Capacity</span>
+        <span class="gauge-stats" id="capacity-meter">15 / 150 (10%)</span>
+      </div>
+      <div class="gauge-track">
+        <div class="gauge-thumb" id="capacity-bar-thumb" style="width: 10%;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recruitment Units -->
+  <div class="section-heading">
+    <h3>Recruit Military Units</h3>
+    <span class="heading-sub">Train units for defenses and plunder raids</span>
+  </div>
+
+  <div class="troops-deck">
+    <!-- 1. Infantry -->
+    <div class="infra-row-card troop-card">
+      <div class="infra-card-body">
+        <div class="infra-icon-frame troop-icon-frame">
+          ⚔️
+        </div>
+        <div class="infra-content-block">
+          <div class="infra-title-line">
+            <h4>Royal Footmen</h4>
+            <span class="owned-pill"><span id="owned-infantry">10</span> Active</span>
+          </div>
+          <div class="troop-specs-row">
+            <span class="spec-tag">💥 5 ATK</span>
+            <span class="spec-tag">🛡️ Frontline</span>
+            <span class="spec-cost">20 <img src="assets/coin.png" class="clay-coin-micro" alt="Gold" /> / unit</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="infra-action-bar dual-action">
+        <button class="btn btn-gold" onclick="recruitTroops('infantry', 10)">
+          <span>+10</span>
+          <span class="cost-tag">200 <img src="assets/coin.png" class="clay-coin-micro" alt="Gold" /></span>
+        </button>
+        <button class="btn btn-secondary" onclick="recruitTroops('infantry', 50)">
+          <span>+50</span>
+          <span class="cost-tag">1,000 <img src="assets/coin.png" class="clay-coin-micro" alt="Gold" /></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- 2. Archers -->
+    <div class="infra-row-card troop-card">
+      <div class="infra-card-body">
+        <div class="infra-icon-frame troop-icon-frame">
+          🏹
+        </div>
+        <div class="infra-content-block">
+          <div class="infra-title-line">
+            <h4>Longbow Snipers</h4>
+            <span class="owned-pill"><span id="owned-archers">5</span> Active</span>
+          </div>
+          <div class="troop-specs-row">
+            <span class="spec-tag">💥 12 ATK</span>
+            <span class="spec-tag">🎯 Piercing</span>
+            <span class="spec-cost">50 <img src="assets/coin.png" class="clay-coin-micro" alt="Gold" /> / unit</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="infra-action-bar dual-action">
+        <button class="btn btn-gold" onclick="recruitTroops('archer', 10)">
+          <span>+10</span>
+          <span class="cost-tag">500 <img src="assets/coin.png" class="clay-coin-micro" alt="Gold" /></span>
+        </button>
+        <button class="btn btn-secondary" onclick="recruitTroops('archer', 50)">
+          <span>+50</span>
+          <span class="cost-tag">2,500 <img src="assets/coin.png" class="clay-coin-micro" alt="Gold" /></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- 3. Siege Engines -->
+    <div class="infra-row-card troop-card">
+      <div class="infra-card-body">
+        <div class="infra-icon-frame troop-icon-frame">
+          ☄️
+        </div>
+        <div class="infra-content-block">
+          <div class="infra-title-line">
+            <h4>Heavy Siege Rams</h4>
+            <span class="owned-pill"><span id="owned-siege">0</span> Active</span>
+          </div>
+          <div class="troop-specs-row">
+            <span class="spec-tag">💥 50 ATK</span>
+            <span class="spec-tag">🧱 Wall Breaker</span>
+            <span class="spec-cost">250 <img src="assets/coin.png" class="clay-coin-micro" alt="Gold" /> / unit</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="infra-action-bar dual-action">
+        <button class="btn btn-gold" onclick="recruitTroops('siege', 2)">
+          <span>+2</span>
+          <span class="cost-tag">500 <img src="assets/coin.png" class="clay-coin-micro" alt="Gold" /></span>
+        </button>
+        <button class="btn btn-secondary" onclick="recruitTroops('siege', 10)">
+          <span>+10</span>
+          <span class="cost-tag">2,500 <img src="assets/coin.png" class="clay-coin-micro" alt="Gold" /></span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Barracks Infrastructure -->
+  <div class="section-heading">
+    <h3>Barracks Infrastructure</h3>
+    <span class="heading-sub">Upgrade to increase housing capacity</span>
+  </div>
+
+  <!-- Barracks Upgrade Card -->
+  <div class="infra-row-card barracks-card">
+    <div class="infra-card-body">
+      <div class="infra-icon-frame">
+        <img src="assets/turret.png" class="clay-asset-img" alt="Barracks" />
+      </div>
+      <div class="infra-content-block">
+        <div class="infra-title-line">
+          <h4>Expand Barracks</h4>
+          <span class="lvl-badge">Next: <span id="next-barracks-limit">300</span> cap</span>
+        </div>
+        <p class="caption">Housing limit increases by +150 military units per level.</p>
+      </div>
+    </div>
+    <div class="infra-action-bar">
+      <button class="btn btn-gold btn-block" id="btn-upgrade-barracks">
+        <span>Upgrade Barracks</span>
+        <span class="cost-tag"><span id="cost-barracks-up">2,000</span> <img src="assets/coin.png" class="clay-coin-micro" alt="Gold" /></span>
+      </button>
+    </div>
+  </div>
+</section>
