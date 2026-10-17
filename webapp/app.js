@@ -157,6 +157,8 @@ if (tg?.initDataUnsafe?.user) {
 
 // Background Debounced Remote Persistence (Optimistic Instant UI)
 let persistDebounceTimer = null;
+// Guard: prevents syncRealDatabaseData from overwriting last_collected for 5 seconds after a mine collect
+let lastCollectSyncGuard = 0;
 function debouncePersist() {
   clearTimeout(persistDebounceTimer);
   persistDebounceTimer = setTimeout(persistStateToSupabase, 800);
@@ -1409,35 +1411,45 @@ function setupBaseActions() {
   // Collect Gold Mine
   document.getElementById('btn-collect-mine')?.addEventListener('click', async () => {
     triggerHaptic('medium');
-    const diffSec = Math.floor((Date.now() - (state.base.last_collected || Date.now())) / 1000);
+    const nowMs = Date.now();
+    const diffSec = Math.floor((nowMs - (state.base.last_collected || nowMs)) / 1000);
     const ratePerSec = (state.base.collector_level * 5) / 60;
     let accumulated = Math.floor(diffSec * ratePerSec);
     if (state.user.is_vip) accumulated = Math.floor(accumulated * 1.5);
-    accumulated = Math.min(accumulated, state.base.collector_level * 1500);
+    // Cap: 8 hours * rate (480 mins * level * 5 gold/min)
+    const maxCap = state.base.collector_level * 5 * 480;
+    accumulated = Math.min(accumulated, maxCap);
 
     if (accumulated < 10) {
       showToast('⏳ Gold Mine needs a few seconds to produce gold!');
       return;
     }
 
+    // Set guard BEFORE any async work to prevent sync race
+    lastCollectSyncGuard = Date.now() + 5000; // block sync overwrite for 5 seconds
+
     state.user.gold += accumulated;
-    state.base.last_collected = Date.now();
+    state.base.last_collected = nowMs;
     fireRoyalConfetti();
     showToast(`💰 Collected +${accumulated.toLocaleString()} Piko Gold!`);
-    saveState();
 
+    // Persist to Supabase immediately (before saveState triggers debounce)
     if (supabaseClient && state.user.id) {
       try {
-        await supabaseClient.from('user_bases').update({
-          last_collected_at: new Date(state.base.last_collected).toISOString()
-        }).eq('user_id', state.user.id);
-        await supabaseClient.from('users').update({
-          gold_coins: state.user.gold
-        }).eq('telegram_id', state.user.id);
+        await Promise.all([
+          supabaseClient.from('user_bases').update({
+            last_collected_at: new Date(nowMs).toISOString()
+          }).eq('user_id', state.user.id),
+          supabaseClient.from('users').update({
+            gold_coins: state.user.gold
+          }).eq('telegram_id', state.user.id)
+        ]);
       } catch (err) {
         console.error('Mine collection sync error:', err);
       }
     }
+
+    saveState();
   });
 
   // Upgrade Gold Mine
@@ -2448,7 +2460,8 @@ async function syncRealDatabaseData() {
         state.base.turret_level = baseData.defense_turret_level ?? state.base.turret_level;
         state.base.defense_power = baseData.defense_power ?? state.base.defense_power;
         state.base.collector_level = baseData.collector_level ?? state.base.collector_level;
-        if (baseData.last_collected_at) {
+        // Only sync last_collected from DB if the guard is not active (prevents resetting after a collect)
+        if (baseData.last_collected_at && Date.now() > lastCollectSyncGuard) {
           state.base.last_collected = new Date(baseData.last_collected_at).getTime();
         }
         if (baseData.shield_until) {
@@ -2568,7 +2581,9 @@ setInterval(() => {
   const ratePerSec = (state.base.collector_level * 5) / 60;
   let accumulated = Math.floor(diffSec * ratePerSec);
   if (state.user.is_vip) accumulated = Math.floor(accumulated * 1.5);
-  accumulated = Math.min(accumulated, state.base.collector_level * 1500);
+  // Cap at 8 hours (480 mins) of production, matching backend logic
+  const maxCap = state.base.collector_level * 5 * 480;
+  accumulated = Math.min(accumulated, maxCap);
 
   const accumEl = document.getElementById('mine-accumulated-num');
   if (accumEl) accumEl.innerText = accumulated.toLocaleString();
