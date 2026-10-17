@@ -5,27 +5,469 @@
   <meta charset="UTF-8">
   <meta name="viewport"
     content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>Piko Kingdom - Golden Empire</title>
+  <title>PikoBot — Telegram RPG Base-Building & Group Engagement Bot</title>
+  <meta name="description"
+    content="PikoBot is an open-source Telegram RPG strategy bot & Mini App featuring Citadel base-building, PvP warfare, dual-currency economy, P2P marketplace, and lucky group drops.">
+
   <!-- Telegram WebApp SDK -->
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
   <!-- Google Fonts: Outfit -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap"
     rel="stylesheet">
+
   <!-- Supabase JS Client -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
   <!-- Canvas Confetti for Celebration FX -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+  <!-- Stylesheets -->
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="landing.css">
 </head>
 
 <body>
-  <!-- Ambient Gold Glow Backdrop -->
-  <div class="ambient-glow glow-top"></div>
-  <div class="ambient-glow glow-bottom"></div>
+  <!-- =========================================================================
+       1. INTERACTIVE CLAYMORPHISM LANDING PAGE (FOR GITHUB & WEB VISITORS)
+       ========================================================================= -->
+  <div id="landing-view">
+    <!-- Ambient Glow Orbs -->
+    <div class="landing-ambient landing-glow-1"></div>
+    <div class="landing-ambient landing-glow-2"></div>
+    <div class="landing-ambient landing-glow-3"></div>
 
-  <div id="app-container">
+    <!-- Sticky Clay Navbar -->
+    <header class="clay-nav-header">
+      <div class="clay-nav-inner">
+        <div class="nav-brand-group" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+          <img src="assets/castle.png" alt="PikoBot Castle" class="nav-brand-logo">
+          <span class="nav-brand-title">PikoBot</span>
+          <span class="nav-badge-pill">RPG & TMA</span>
+        </div>
+
+        <nav class="nav-links-desktop">
+          <a href="#features" class="nav-link">Features</a>
+          <a href="#demo" class="nav-link">Mini App</a>
+          <a href="#commands" class="nav-link">Commands</a>
+          <a href="https://github.com/Bhavishy-dev/PikoBot" target="_blank" rel="noopener" class="nav-link">GitHub ⭐</a>
+        </nav>
+
+        <div class="nav-cta-group">
+          <button class="btn-clay btn-clay-white" id="btn-nav-play-demo" title="Try Live Web Demo">
+            🎮 Play Demo
+          </button>
+          <a href="https://t.me/Piko_Officialbot" target="_blank" rel="noopener" class="btn-clay btn-clay-telegram">
+            🚀 Open Bot
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="landing-hero">
+      <div class="hero-pill-badge">
+        <span>🛡️</span> Open-Source Telegram RPG Strategy & Mini App
+      </div>
+
+      <h1 class="hero-title">
+        Build Your Citadel. <br>
+        <span class="hero-title-highlight">Command Armies.</span> <br>
+        <span class="hero-title-indigo">Conquer Telegram.</span>
+      </h1>
+
+      <p class="hero-description">
+        Turn your Telegram groups and DMs into a living empire battlefield. Fortify defense walls, command armies in strategic PvP raids, trade in a decentralized marketplace, and unlock lucky treasure drops in active communities.
+      </p>
+
+      <div class="hero-actions">
+        <a href="https://t.me/Piko_Officialbot" target="_blank" rel="noopener" class="btn-clay btn-clay-telegram">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.52 2.77-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+          </svg>
+          Open Bot in Telegram
+        </a>
+        <button class="btn-clay btn-clay-gold" id="btn-hero-play-demo">
+          🎮 Launch Web Demo
+        </button>
+        <a href="https://github.com/Bhavishy-dev/PikoBot" target="_blank" rel="noopener" class="btn-clay btn-clay-white">
+          ⭐ Star on GitHub
+        </a>
+      </div>
+
+      <!-- Floating 3D Assets Row -->
+      <div class="hero-floating-assets-row">
+        <div class="floating-clay-chip" style="animation: floatBobbing 4s infinite ease-in-out;">
+          <img src="assets/hq_palace.png" alt="Citadel HQ">
+          <span>Citadel HQ</span>
+        </div>
+        <div class="floating-clay-chip" style="animation: floatBobbing 4.5s infinite ease-in-out 0.5s;">
+          <img src="assets/swords.png" alt="PvP Warfare">
+          <span>PvP Warfare</span>
+        </div>
+        <div class="floating-clay-chip" style="animation: floatBobbing 3.8s infinite ease-in-out 1s;">
+          <img src="assets/shield.png" alt="Peace Shield">
+          <span>12h Peace Shield</span>
+        </div>
+        <div class="floating-clay-chip" style="animation: floatBobbing 4.2s infinite ease-in-out 1.5s;">
+          <img src="assets/coin.png" alt="Gold Coins">
+          <span>Gold Coins 🪙</span>
+        </div>
+        <div class="floating-clay-chip" style="animation: floatBobbing 4.8s infinite ease-in-out 2s;">
+          <img src="assets/diamond.png" alt="Diamonds">
+          <span>Diamonds 💎</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Metrics Ticker Bar -->
+    <div class="landing-ticker-bar">
+      <div class="ticker-grid">
+        <div class="ticker-item">
+          <div class="ticker-icon-box">
+            <img src="assets/victory_cup.png" alt="Trophy">
+          </div>
+          <div>
+            <div class="ticker-val">100% Free</div>
+            <div class="ticker-lbl">Open-Source RPG</div>
+          </div>
+        </div>
+        <div class="ticker-item">
+          <div class="ticker-icon-box">
+            <img src="assets/swords.png" alt="Combat">
+          </div>
+          <div>
+            <div class="ticker-val">Tactical RNG</div>
+            <div class="ticker-lbl">Fair PvP Combat Engine</div>
+          </div>
+        </div>
+        <div class="ticker-item">
+          <div class="ticker-icon-box">
+            <img src="assets/coin.png" alt="Gold Economy">
+          </div>
+          <div>
+            <div class="ticker-val">Zero Inflation</div>
+            <div class="ticker-lbl">True Plunder Transfer</div>
+          </div>
+        </div>
+        <div class="ticker-item">
+          <div class="ticker-icon-box">
+            <img src="assets/radar.png" alt="Radar">
+          </div>
+          <div>
+            <div class="ticker-val">Mini App</div>
+            <div class="ticker-lbl">Tactile Haptics & UI</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Features Showcase Grid -->
+    <section class="landing-section" id="features">
+      <div class="section-header">
+        <span class="section-pill-tag">Kingdom Mechanics</span>
+        <h2 class="section-title">Engineered for Telegram Dominance</h2>
+        <p class="section-subtitle">Every game system is crafted with deep strategic balance, rewarding activity, and seamless Telegram community integration.</p>
+      </div>
+
+      <div class="features-clay-grid">
+        <!-- Feature 1 -->
+        <div class="clay-feature-card">
+          <div class="feature-top-icon-row">
+            <div class="feature-clay-icon-wrapper gold-tint">
+              <img src="assets/hq_palace.png" alt="Base Building">
+            </div>
+            <span class="feature-pill-stat">Base Defense</span>
+          </div>
+          <h3 class="feature-card-title">Citadel & Fortress Walls</h3>
+          <p class="feature-card-desc">
+            Construct your imperial Palace, fortify Wall HP to withstand siege raids, deploy counter-damage Turrets, and collect passive Gold Coins every second.
+          </p>
+          <div class="feature-tags-list">
+            <span class="feature-sub-chip">🏰 HQ Leveling</span>
+            <span class="feature-sub-chip">🧱 Wall HP Barrier</span>
+            <span class="feature-sub-chip">⛏️ Passive Gold Mine</span>
+          </div>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="clay-feature-card">
+          <div class="feature-top-icon-row">
+            <div class="feature-clay-icon-wrapper red-tint">
+              <img src="assets/swords.png" alt="Military Warfare">
+            </div>
+            <span class="feature-pill-stat">PvP Raids</span>
+          </div>
+          <h3 class="feature-card-title">Troop Recruitment & Warfare</h3>
+          <p class="feature-card-desc">
+            Train frontline Infantry, sharpshooter Archers, and heavy Catapults engineered to pulverize fortress walls. Raid rivals by username, group replies, or the Imperial War Radar.
+          </p>
+          <div class="feature-tags-list">
+            <span class="feature-sub-chip">🗡️ Infantry</span>
+            <span class="feature-sub-chip">🏹 Archers</span>
+            <span class="feature-sub-chip">☄️ Siege Catapults</span>
+          </div>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="clay-feature-card">
+          <div class="feature-top-icon-row">
+            <div class="feature-clay-icon-wrapper blue-tint">
+              <img src="assets/shield.png" alt="Divine Peace Shield">
+            </div>
+            <span class="feature-pill-stat">Invulnerability</span>
+          </div>
+          <h3 class="feature-card-title">12-Hour Divine Peace Shield</h3>
+          <p class="feature-card-desc">
+            Activate impenetrable divine protection to safeguard your empire and gold vaults while you sleep or rest. Completely immune to all incoming enemy attacks.
+          </p>
+          <div class="feature-tags-list">
+            <span class="feature-sub-chip">🛡️ 12h Duration</span>
+            <span class="feature-sub-chip">🔒 Vault Protection</span>
+            <span class="feature-sub-chip">💎 Diamond Activation</span>
+          </div>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="clay-feature-card">
+          <div class="feature-top-icon-row">
+            <div class="feature-clay-icon-wrapper indigo-tint">
+              <img src="assets/coin.png" alt="Dual Economy">
+            </div>
+            <span class="feature-pill-stat">Economy</span>
+          </div>
+          <h3 class="feature-card-title">Piko Gold 🪙 & Diamonds 💎</h3>
+          <p class="feature-card-desc">
+            A sustainable dual-currency system. Gold Coins power regular military training and base expansion, while rare Piko Diamonds unlock VIP trading and shields.
+          </p>
+          <div class="feature-tags-list">
+            <span class="feature-sub-chip">🎁 24h Daily Streak</span>
+            <span class="feature-sub-chip">🎡 Lucky Spin Wheel</span>
+            <span class="feature-sub-chip">👑 VIP Privilege</span>
+          </div>
+        </div>
+
+        <!-- Feature 5 -->
+        <div class="clay-feature-card">
+          <div class="feature-top-icon-row">
+            <div class="feature-clay-icon-wrapper emerald-tint">
+              <img src="assets/market_stall.png" alt="P2P Marketplace">
+            </div>
+            <span class="feature-pill-stat">Decentralized</span>
+          </div>
+          <h3 class="feature-card-title">P2P Trading Marketplace</h3>
+          <p class="feature-card-desc">
+            List weapons, shields, resources, and VIP passes directly for sale. Complete with instant escrow verification and seller payouts across the global playerbase.
+          </p>
+          <div class="feature-tags-list">
+            <span class="feature-sub-chip">🏪 P2P Listings</span>
+            <span class="feature-sub-chip">🔒 Automated Escrow</span>
+            <span class="feature-sub-chip">💎 VIP Diamond Auctions</span>
+          </div>
+        </div>
+
+        <!-- Feature 6 -->
+        <div class="clay-feature-card">
+          <div class="feature-top-icon-row">
+            <div class="feature-clay-icon-wrapper purple-tint">
+              <img src="assets/scroll.png" alt="Group Drops">
+            </div>
+            <span class="feature-pill-stat">Engagement</span>
+          </div>
+          <h3 class="feature-card-title">Group Drops & Community Fun</h3>
+          <p class="feature-card-desc">
+            Keep your Telegram community active with random lucky treasure chest spawns that reward the quickest member, plus automated dynamic welcome messages.
+          </p>
+          <div class="feature-tags-list">
+            <span class="feature-sub-chip">🎁 Lucky Treasure Drops</span>
+            <span class="feature-sub-chip">👋 Auto-Welcomes</span>
+            <span class="feature-sub-chip">🏆 Group Leaderboards</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mini App Interactive Demo Showcase -->
+    <section class="landing-section" id="demo">
+      <div class="demo-preview-container">
+        <div class="demo-info-col">
+          <span class="section-pill-tag">Telegram Mini App</span>
+          <h3>State-of-the-Art Web3 Gaming UI</h3>
+          <p>
+            PikoBot isn't just text commands. Launch the official Mini App right inside Telegram for an animated, tactile experience with haptic feedback, real-time radar, and smooth clay aesthetics.
+          </p>
+          <ul class="demo-feature-checks">
+            <li><span class="check-icon">✓</span> Animated Citadel graphics & Wall HP gauge</li>
+            <li><span class="check-icon">✓</span> Live Imperial War Radar target matchmaking</li>
+            <li><span class="check-icon">✓</span> One-tap passive gold collector with instant animations</li>
+            <li><span class="check-icon">✓</span> Tactile Telegram haptic feedback on all actions</li>
+          </ul>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <button class="btn-clay btn-clay-indigo" id="btn-show-app-demo">
+              🎮 Try Interactive Mini App Demo
+            </button>
+            <a href="https://t.me/Piko_Officialbot" target="_blank" rel="noopener" class="btn-clay btn-clay-telegram">
+              🚀 Open in Telegram
+            </a>
+          </div>
+        </div>
+
+        <div class="demo-phone-col">
+          <div class="clay-phone-device">
+            <div class="phone-dynamic-island"></div>
+            <div class="phone-screen-content">
+              <div class="mock-screen-header">
+                <span style="font-size: 13px; font-weight: 800; color: #1e293b;">👑 Lord Commander</span>
+                <span style="font-size: 12px; font-weight: 800; color: #b45309;">🪙 1,000</span>
+              </div>
+              <div class="mock-screen-body">
+                <img src="assets/hq_palace.png" alt="Citadel" class="mock-citadel-preview-img">
+                <div style="font-size: 16px; font-weight: 900; color: #0f172a;">Level 1 Citadel</div>
+                <div style="font-size: 12px; font-weight: 700; color: #10b981; background: #ecfdf5; padding: 4px 12px; border-radius: 999px;">
+                  🛡️ Wall HP: 500 / 500
+                </div>
+                <div style="font-size: 12.5px; color: #64748b; margin-top: 4px;">
+                  Tap below to experience the full interactive game in your browser!
+                </div>
+                <button class="btn-clay btn-clay-gold" id="btn-phone-launch-demo" style="font-size: 13px; padding: 8px 18px; margin-top: 6px;">
+                  ▶️ Play Demo
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Commands Cheat Sheet -->
+    <section class="landing-section" id="commands">
+      <div class="section-header">
+        <span class="section-pill-tag">Quick Reference</span>
+        <h2 class="section-title">Core Bot Commands</h2>
+        <p class="section-subtitle">Playable in direct messages or added to your Telegram group chats.</p>
+      </div>
+
+      <div class="commands-grid">
+        <div class="clay-command-card" onclick="copyCommand('/start', this)">
+          <div class="cmd-text-col">
+            <code>/start</code>
+            <div class="cmd-desc">Initialize empire profile & view main menu</div>
+          </div>
+          <button class="btn-copy-cmd">Copy</button>
+        </div>
+
+        <div class="clay-command-card" onclick="copyCommand('/attack @username', this)">
+          <div class="cmd-text-col">
+            <code>/attack @username</code>
+            <div class="cmd-desc">Launch PvP raid on rival fortress</div>
+          </div>
+          <button class="btn-copy-cmd">Copy</button>
+        </div>
+
+        <div class="clay-command-card" onclick="copyCommand('/base', this)">
+          <div class="cmd-text-col">
+            <code>/base</code>
+            <div class="cmd-desc">Inspect Citadel HQ, Wall HP & Mine</div>
+          </div>
+          <button class="btn-copy-cmd">Copy</button>
+        </div>
+
+        <div class="clay-command-card" onclick="copyCommand('/shield', this)">
+          <div class="cmd-text-col">
+            <code>/shield</code>
+            <div class="cmd-desc">Activate 12-hour divine invulnerability</div>
+          </div>
+          <button class="btn-copy-cmd">Copy</button>
+        </div>
+
+        <div class="clay-command-card" onclick="copyCommand('/market', this)">
+          <div class="cmd-text-col">
+            <code>/market</code>
+            <div class="cmd-desc">Browse decentralized P2P trading post</div>
+          </div>
+          <button class="btn-copy-cmd">Copy</button>
+        </div>
+
+        <div class="clay-command-card" onclick="copyCommand('/top', this)">
+          <div class="cmd-text-col">
+            <code>/top</code>
+            <div class="cmd-desc">Global rankings (Wealth, Fortresses, Armies)</div>
+          </div>
+          <button class="btn-copy-cmd">Copy</button>
+        </div>
+
+        <div class="clay-command-card" onclick="copyCommand('/daily', this)">
+          <div class="cmd-text-col">
+            <code>/daily</code>
+            <div class="cmd-desc">Claim daily streak Gold & Diamonds</div>
+          </div>
+          <button class="btn-copy-cmd">Copy</button>
+        </div>
+
+        <div class="clay-command-card" onclick="copyCommand('/army', this)">
+          <div class="cmd-text-col">
+            <code>/army</code>
+            <div class="cmd-desc">Inspect your troop garrison & military power</div>
+          </div>
+          <button class="btn-copy-cmd">Copy</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action Banner -->
+    <div class="landing-cta-banner">
+      <div class="cta-banner-inner">
+        <div class="cta-banner-assets-row">
+          <img src="assets/castle.png" alt="Castle">
+          <img src="assets/victory_cup.png" alt="Trophy">
+          <img src="assets/swords.png" alt="Swords">
+        </div>
+        <h2 class="cta-banner-title">Ready to Rule Your Telegram Kingdom?</h2>
+        <p class="cta-banner-desc">
+          Add PikoBot to your group chat or start conquering empires in direct messages right now. Completely free and open-source.
+        </p>
+        <div class="cta-banner-buttons">
+          <a href="https://t.me/Piko_Officialbot" target="_blank" rel="noopener" class="btn-clay btn-clay-gold" style="font-size: 16px; padding: 14px 32px;">
+            🚀 Launch @Piko_Officialbot
+          </a>
+          <a href="https://github.com/Bhavishy-dev/PikoBot" target="_blank" rel="noopener" class="btn-clay btn-clay-white" style="font-size: 16px; padding: 14px 32px;">
+            ⭐ Star on GitHub
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="landing-footer">
+      <div class="footer-left">
+        <img src="assets/castle.png" alt="PikoBot">
+        <span><b>PikoBot</b> &copy; 2026 Bhavishy-dev • MIT License</span>
+      </div>
+      <div class="footer-links">
+        <a href="https://github.com/Bhavishy-dev/PikoBot" target="_blank" rel="noopener" class="footer-link">GitHub Repository</a>
+        <a href="https://t.me/Piko_Officialbot" target="_blank" rel="noopener" class="footer-link">Telegram Bot</a>
+        <a href="https://pikobot-app.pages.dev" class="footer-link">Cloudflare Pages</a>
+      </div>
+    </footer>
+  </div>
+
+
+  <!-- =========================================================================
+       2. FULL TELEGRAM MINI APP GAME CONTAINER (PLAYABLE DEMO & TG CLIENT)
+       ========================================================================= -->
+  <div id="app-container" style="display: none;">
+    <!-- Top Web Switcher Bar (Visible when opened in standard web browser) -->
+    <div class="app-mode-switch-bar" id="web-mode-banner">
+      <span>🎮 PikoBot Mini App Live Demo</span>
+      <button class="btn-switch-landing" id="btn-back-to-landing">🌐 Back to Landing Page</button>
+    </div>
+
+    <!-- Ambient Gold Glow Backdrop -->
+    <div class="ambient-glow glow-top"></div>
+    <div class="ambient-glow glow-bottom"></div>
+
     <!-- Top Royal Header -->
     <header class="top-header">
       <div class="user-pill">
@@ -57,7 +499,7 @@
       </div>
     </header>
 
-    <!-- Daily Activities Quick Bar (Streak, Lucky Wheel & Handbook Guide) -->
+    <!-- Daily Activities Quick Bar -->
     <div class="quick-activity-bar">
       <button class="activity-pill streak-pill" id="btn-open-streak">
         <span class="pill-icon"><img src="assets/streak.png" class="clay-pill-img" alt="Streak" /></span>
@@ -84,7 +526,7 @@
       </button>
     </div>
 
-    <!-- Main Content Tabs Container (Loaded dynamically from modular components) -->
+    <!-- Main Content Tabs Container -->
     <main class="main-content" id="main-content">
       <div class="component-loading-spinner" id="components-loader" style="text-align:center; padding: 50px 16px;">
         <div style="font-size: 32px; animation: pulseRadar 1.5s infinite ease-in-out;">👑</div>
@@ -117,13 +559,85 @@
     </nav>
   </div>
 
-  <!-- Dynamic Modals Container (Loaded from components/modals.html) -->
+  <!-- Dynamic Modals Container -->
   <div id="modals-root"></div>
 
   <!-- Royal Toast Notification -->
   <div id="toast" class="royal-toast"></div>
 
+  <!-- Main Game & Mode Switcher Logic -->
   <script src="app.js"></script>
+
+  <script>
+    // Copy Command Helper
+    function copyCommand(cmdText, elem) {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(cmdText).then(() => {
+          const btn = elem.querySelector('.btn-copy-cmd');
+          if (btn) {
+            const original = btn.textContent;
+            btn.textContent = 'Copied! ✨';
+            btn.style.background = '#10b981';
+            btn.style.color = '#ffffff';
+            setTimeout(() => {
+              btn.textContent = original;
+              btn.style.background = '';
+              btn.style.color = '';
+            }, 1800);
+          }
+        });
+      }
+    }
+
+    // View Routing / Mode Switcher
+    function initViewRouting() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const isTgClient = Boolean(window.Telegram?.WebApp?.initData && window.Telegram.WebApp.initData.length > 0);
+      const forceAppMode = urlParams.get('app') === '1' || urlParams.get('mode') === 'app';
+      const webBanner = document.getElementById('web-mode-banner');
+
+      const landingView = document.getElementById('landing-view');
+      const appContainer = document.getElementById('app-container');
+
+      function showApp() {
+        if (landingView) landingView.style.display = 'none';
+        if (appContainer) appContainer.style.display = 'flex';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      function showLanding() {
+        if (landingView) landingView.style.display = 'block';
+        if (appContainer) appContainer.style.display = 'none';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      if (isTgClient) {
+        // Opened inside Telegram WebApp
+        if (webBanner) webBanner.style.display = 'none';
+        showApp();
+      } else if (forceAppMode) {
+        showApp();
+      } else {
+        // Web visitor by default sees the Landing Page
+        showLanding();
+      }
+
+      // Bind Switcher Buttons
+      const playBtn1 = document.getElementById('btn-nav-play-demo');
+      const playBtn2 = document.getElementById('btn-hero-play-demo');
+      const playBtn3 = document.getElementById('btn-show-app-demo');
+      const playBtn4 = document.getElementById('btn-phone-launch-demo');
+      const backBtn = document.getElementById('btn-back-to-landing');
+
+      if (playBtn1) playBtn1.addEventListener('click', showApp);
+      if (playBtn2) playBtn2.addEventListener('click', showApp);
+      if (playBtn3) playBtn3.addEventListener('click', showApp);
+      if (playBtn4) playBtn4.addEventListener('click', showApp);
+      if (backBtn) backBtn.addEventListener('click', showLanding);
+    }
+
+    document.addEventListener('DOMContentLoaded', initViewRouting);
+  </script>
 </body>
 
 </html>
