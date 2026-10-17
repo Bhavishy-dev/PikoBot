@@ -1,7 +1,7 @@
 # 🏰 PikoBot — Telegram RPG Base-Building & Group Engagement Bot
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Bhavishy-dev/PikoBot/main/webapp/assets/citadel.png" alt="PikoBot Citadel" width="220" style="border-radius: 20px; box-shadow: 0 8px 30px rgba(0,0,0,0.3);"/>
+  <img src="https://raw.githubusercontent.com/Bhavishy-dev/PikoBot/refs/heads/main/webapp/assets/castle.png" alt="PikoBot Citadel" width="220" style="border-radius: 20px; box-shadow: 0 8px 30px rgba(0,0,0,0.3);"/>
 </p>
 
 <p align="center">
