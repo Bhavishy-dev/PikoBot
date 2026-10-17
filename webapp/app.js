@@ -1,10 +1,8 @@
 // Piko Kingdom - Telegram Mini App Production Engine
 const tg = window.Telegram?.WebApp;
 
-// 1. Telegram First Enforcement: Redirect directly to @Piko_Officialbot if opened outside Telegram
-if ((!tg || !tg.initData) && !window.location.search.includes('dev=true')) {
-  window.location.replace('https://t.me/Piko_Officialbot/app');
-}
+// 1. Telegram WebApp Detection (No forced redirect to enable web landing page & demo exploration)
+
 
 // 2. Initialize Telegram WebApp Environment
 if (tg) {
